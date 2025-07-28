@@ -31,7 +31,7 @@ app.post("/send-notification", async (req, res) => {
     res.status(200).json({ success: true, response });
   } catch (err) {
     console.error("❌ Error:", err);
-    res.status(500).json({ error: "Notification failed." });
+    res.status(500).json({ error: "Notification failed.",err });
   }
 });
 
