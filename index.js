@@ -32,15 +32,15 @@ app.post("/send-notification", async (req, res) => {
       },
     },
   };
-  
 
+  // hit inds
   try {
     const response = await admin.messaging().send(message);
     console.log("✅ Message sent success:", response);
     res.status(200).json({ success: true, response });
   } catch (err) {
     console.error("❌ Error:", err);
-    res.status(500).json({ error: "Notification failed.",err });
+    res.status(500).json({ error: "Notification failed.", err });
   }
 });
 
