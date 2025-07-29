@@ -7,12 +7,26 @@ admin.initializeApp({
 });
 
 const sendPushNotification = async (token, title, body) => {
+  // const message = {
+  //   notification: {
+  //     title,
+  //     body,
+  //   },
+  //   token,
+  // };
   const message = {
+    token,
     notification: {
       title,
       body,
     },
-    token,
+    webpush: {
+      notification: {
+        title,
+        body,
+        icon: "/logo192.png",
+      },
+    },
   };
 
   try {
