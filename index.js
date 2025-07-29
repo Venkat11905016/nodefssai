@@ -23,6 +23,14 @@ app.post("/send-notification", async (req, res) => {
       body,
     },
     token,
+    webpush: {
+      notification: {
+        title,
+        body,
+        icon: "https://nodefssai-2.onrender.com/logo192.png", // Full HTTPS path is required
+        click_action: "https://nodefssai-2.onrender.com", // Required to make notification clickable
+      },
+    },
   };
 
   try {
