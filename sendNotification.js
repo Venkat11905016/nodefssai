@@ -14,6 +14,20 @@ const sendPushNotification = async (token, title, body) => {
   //   },
   //   token,
   // };
+  // const message = {
+  //   token,
+  //   notification: {
+  //     title,
+  //     body,
+  //   },
+  //   webpush: {
+  //     notification: {
+  //       title,
+  //       body,
+  //       icon: "/logo192.png",
+  //     },
+  //   },
+  // };
   const message = {
     token,
     notification: {
@@ -24,11 +38,14 @@ const sendPushNotification = async (token, title, body) => {
       notification: {
         title,
         body,
-        icon: "/logo192.png",
+        icon: "https://nodefssai-2.onrender.com/logo192.png", // ✅ FULL URL required
+        click_action: "https://nodefssai-2.onrender.com", // ✅ optional but good UX
+      },
+      fcmOptions: {
+        link: "https://nodefssai-2.onrender.com", // ✅ required for Android to open app
       },
     },
   };
-
   try {
     const response = await admin.messaging().send(message);
     console.log("✅ Successfully sent message:", response);

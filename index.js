@@ -17,22 +17,39 @@ admin.initializeApp({
 app.post("/send-notification", async (req, res) => {
   const { token, title, body } = req.body;
 
+  // const message = {
+  //   notification: {
+  //     title,
+  //     body,
+  //   },
+  //   token,
+  //   webpush: {
+  //     notification: {
+  //       title,
+  //       body,
+  //       icon: "https://nodefssai-2.onrender.com/logo192.png", // Full HTTPS path is required
+  //       click_action: "https://nodefssai-2.onrender.com", // Required to make notification clickable
+  //     },
+  //   },
+  // };
   const message = {
+    token,
     notification: {
       title,
       body,
     },
-    token,
     webpush: {
       notification: {
         title,
         body,
-        icon: "https://nodefssai-2.onrender.com/logo192.png", // Full HTTPS path is required
-        click_action: "https://nodefssai-2.onrender.com", // Required to make notification clickable
+        icon: "https://nodefssai-2.onrender.com/logo192.png", // ✅ Must be full URL
+        click_action: "https://nodefssai-2.onrender.com", // ✅ Must be full URL
+      },
+      fcmOptions: {
+        link: "https://nodefssai-2.onrender.com", // ✅ Android Chrome requires this for correct click behavior
       },
     },
   };
-
   // hit inds
   try {
     const response = await admin.messaging().send(message);
